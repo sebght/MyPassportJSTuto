@@ -52,6 +52,7 @@ passport.use(new LocalStrategy({
         passwordField: 'password'
     },
     function (email, password, cb) {
+      console.log(email, password);
 
         //Assume there is a DB module providing a global UserModel
         if (email!=user.email || password!=user.password){
@@ -80,19 +81,19 @@ passport.use(new LocalStrategy({
     }
 ));
 
-passport.use(new JWTStrategy({
-        jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-        secretOrKey   : 'your_jwt_secret'
-    },
-    function (jwtPayload, cb) {
-
-        //find the user in db if needed
-        return UserModel.findOneById(jwtPayload.id)
-            .then(user => {
-                return cb(null, user);
-            })
-            .catch(err => {
-                return cb(err);
-            });
-    }
-));
+// passport.use(new JWTStrategy({
+//         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+//         secretOrKey   : 'your_jwt_secret'
+//     },
+//     function (jwtPayload, cb) {
+//
+//         //find the user in db if needed
+//         return UserModel.findOneById(jwtPayload.id)
+//             .then(user => {
+//                 return cb(null, user);
+//             })
+//             .catch(err => {
+//                 return cb(err);
+//             });
+//     }
+// ));

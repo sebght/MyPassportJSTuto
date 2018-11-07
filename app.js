@@ -2,16 +2,25 @@
 const express = require('express');
 const passport = require('passport');
 require('./passport');
+var bodyParser = require('body-parser');
+
 
 // création du serveur
 const app = express();
 
 // gestion de l'authentification
-const auth = require('./routes/auth');
-const user = require('./routes/user');
+// const auth = require('./routes/auth');
+// const user = require('./routes/user');
 //app.use('/auth', auth);
-app.use('/user', passport.authenticate('jwt', {session: false}), user);
+// app.use('/user', passport.authenticate('jwt', {session: false}), user);
+// app.use(express.bodyParser());
 app.set('view engine', 'ejs');
+
+// app.use(passport.initialize());
+
+// parse application/json
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // création de l'adressage sur la page d'accueil
 app.get('/', (req, res) => {
