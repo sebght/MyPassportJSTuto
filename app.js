@@ -1,8 +1,8 @@
 // modules npm
 const express = require('express');
+var bodyParser = require('body-parser');
 const passport = require('passport');
 require('./passport');
-var bodyParser = require('body-parser');
 
 
 // création du serveur
@@ -16,7 +16,7 @@ const app = express();
 // app.use(express.bodyParser());
 app.set('view engine', 'ejs');
 
-// app.use(passport.initialize());
+app.use(passport.initialize());
 
 // parse application/json
 app.use(bodyParser.json());
