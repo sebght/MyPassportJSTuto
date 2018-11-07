@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Commentaires</title>
+
+    <% include partials/head_css_import.ejs %>
+
+        <style>
+            html,
+            body {
+                font-size: 1em;
+            }
+        </style>
+
+</head>
+
+<body>
+
+    <% include partials/navbar.ejs %>
+
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="col s12">
+                        Pseudo :
+                        <div class="input-field inline">
+                            <input id="pseudo" type="text"
+                                name="pseudo"
+                                <% if (qs.pseudo) { %>
+                                    value=<%= qs.pseudo %>
+                            <% } %>
+                        />
+                            <label for="pseudo">pseudo</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="comment" class="materialize-textarea" placeholder="dites nous tout le bonheur que vous apporte ce site" name="comment"><% if (qs.comment) { %><%= qs.comment %><% } %></textarea>
+                        <label for="comment">Petit compliment :</label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit">
+                    <i class="material-icons right">send</i>
+                    Envoi
+                </button>
+            </form>
+        </div>
+
+        <% include partials/js_import.ejs %>
+
+</body>
+
+</html>
